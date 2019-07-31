@@ -16,11 +16,15 @@ class RouterManager
     {
         $route = $dispatcher->dispatch($requestMethod, $requestUri);
 
-        // var_dump($route);
+        var_dump($requestMethod);
 
         switch ($route[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:
-                $this->container->call(["App\controllers\NotFoundController", "index"],[0]);
+                $this->container->call(["App\controllers\NotFoundController", "index"], [0]);
+                break;
+
+            case \FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+                $this->container->call(["App\controllers\MethodNotAllowedController", "index"], [0]);
                 break;
 
             case \FastRoute\Dispatcher::FOUND:
