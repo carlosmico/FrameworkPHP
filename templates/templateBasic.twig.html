@@ -8,39 +8,14 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>Document</title>
 </head>
 
 <body>
-    <header>
-        <ul class="nav justify-content-end">
-            {% if user is empty %}
-            
-            <li class="nav-item">
-                <a href="/register" class="nav-link">Register</a>
-            </li>
-            <li class="nav-item">
-                <a href="/login" class="nav-link">Login</a>
-            </li>
-            
-            {% endif %}
 
-            {% if user %}
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-                    {{user}}
-                </button>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    <a href="/profile" class="dropdown-item" type="button">Profile</a>
-                    <a href="/logout" class="dropdown-item" type="button">Logout</a>
-                </div>
-            </div>
-
-            {% endif %}
-        </ul>
-    </header>
+    {% block style %}
+    {% endblock %}
 
     {% block body %}
     {% endblock %}

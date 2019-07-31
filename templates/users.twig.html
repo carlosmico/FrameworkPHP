@@ -1,0 +1,33 @@
+{% extends "template.twig.html" %}
+
+{% block body %}
+<h1>Usuarios</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Created_At</th>
+            <th scope="col">Updated_At</th>
+        </tr>
+    </thead>
+    <tbody>
+        <p>Results: {{users|length}}</p>
+
+        {% for user in users %}
+        <tr>
+            <th scope="row">{{ user.id|e}}</th>
+            <td>{{ user.name|e }}</td>
+            <td>{{ user.email|e }}</td>
+            <td>{{ user.password|e }}</td>
+            <td>{{ user.created_at|e }}</td>
+            <td>{{ user.updated_at|e }}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}

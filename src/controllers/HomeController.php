@@ -1,11 +1,14 @@
 <?php
 namespace App\controllers;
+use DI\Container;
 
 use App\ViewManager;
 
-class HomeController{
+class HomeController extends Controller{
+
     public function index(){
-        $viewManager = new ViewManager();
-        $viewManager -> renderTemplate("index.twig.html");
+        // $this -> viewManager = $this->container->get(ViewManager::class);
+
+        $this -> viewManager -> renderTemplate("index.twig.html");
     }
 }
