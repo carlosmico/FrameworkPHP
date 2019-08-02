@@ -21,7 +21,8 @@ class Web
                 $route->addRoute('GET', '/login', ['App\controllers\auth\LoginController', 'index']);
                 $route->addRoute('POST', '/login', ['App\controllers\auth\LoginController', 'login']);
                 $route->addRoute('GET', '/logout', ['App\controllers\auth\LogoutController', 'index']);
-
+                $route->addRoute('GET', '/profile', ['App\controllers\auth\ProfileController', 'index']);
+                
                 $route->addRoute('GET', '/dashboard', ['App\controllers\DashboardController', 'index']);
                 
 

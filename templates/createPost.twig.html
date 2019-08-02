@@ -3,7 +3,7 @@
 {% block body %}
     <div class="container">
         <div class="wrapper">
-            <form role="form" method="POST" name="login_form" class="form-signin">
+            <form role="form" method="POST" name="post-form" class="form-signin">
                 <h3 class="form-signin-heading">{{post ? "Editar post" : "Nuevo post"}}</h3>
 
                 <hr class="colorgraph">
@@ -12,7 +12,7 @@
                 
                 <input type="text" class="form-control" name="title" placeholder="Titulo" required="" autofocus="" value="{{post.title}}">
 
-                <textarea type="text" class="form-control" name="description" placeholder="Cuerpo" required="">{{post.description}}</textarea>
+                <textarea type="text" class="form-control ckeditor" name="description" placeholder="Cuerpo" required="">{{post.description}}</textarea>
                 
                 <button type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="CreatePost" >
                     {{post ? "Editar post" : "Crear post"}}

@@ -7,10 +7,10 @@
 {% for post in posts %}
 
 <div class="card-header">
-    {{post.title}}
+    {{post.title | raw}}
 
     <div class="card-body">
-        <p>{{post.description}}</p>
+        <p>{{post.description | raw}}</p>
 
         <footer class="blockquote-footer">{{post.created_at}}</footer>
     </div>

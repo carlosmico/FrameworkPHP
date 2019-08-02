@@ -13,6 +13,7 @@ abstract class Controller{
     protected $doctrineManager;
     protected $logManager;
     protected $sessionManager;
+    protected $user;
 
     public function __construct(ViewManager $viewManager, DoctrineManager $doctrine, LogManager $logManager, SessionManager $sessionManager){
         $this -> viewManager = $viewManager;
@@ -20,6 +21,7 @@ abstract class Controller{
         $this -> logManager = $logManager;
         $this -> logManager -> info('Controlador ->'.get_class($this) . ' cargado');
         $this -> sessionManager = $sessionManager;
+        if($this->sessionManager -> get("user")) $this -> user = $this->sessionManager -> get("user");
     }
 
     public abstract function index();

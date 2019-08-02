@@ -22,8 +22,8 @@
 
         <tr>
             <th scope="col">{{post.id}}</th>
-            <td scope="col">{{post.title}}</td>
-            <td scope="col">{{post.description|slice(0,80)}}</td>
+            <td scope="col">{{post.title | raw}}</td>
+            <td scope="col">{{post.description|slice(0,80) | raw}}</td>
             <td><a class="btn btn-primary" href="/edit-post/{{post.id}}">Edit</a></td>
             <td><a class="btn btn-danger" id="btnEliminarPost" onclick="deletePost('{{post.title}}','{{post.id}}')" >Remove</a></td>
         </tr>
