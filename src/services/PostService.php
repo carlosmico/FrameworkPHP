@@ -16,13 +16,29 @@ class PostService extends Service{
         }
     }
 
-    public function deletePostById(int $id):int{
+    public function updatePost($postOld){
         try{
-            $post = $this->doctrineManager->em->getRepository(Post::class)->findById($id);
+            $post = $this->doctrineManager->em->getRepository(Post::class)->findById($postOld->id)[0];
+
+            $post -> title = $postOld -> title;
+            $post -> description = $postOld -> description;
+
+            $this -> doctrineManager -> em -> persist($post);
+            $this -> doctrineManager -> em -> flush();
+
+            return $post;
+        }catch(Exception $e){
+            $this -> logManager -> error($e -> toString());
+            var_dump($e);
+        }
+    }
+
+    public function deletePostById(int $id){
+        try{
+            $post = $this->doctrineManager->em->getRepository(Post::class)->findById($id)[0];
 
             if(!$post){
-                $this -> logManager -> infor("No existe el post a eliminar con id " . $id);
-                return 0;
+                $this -> logManager -> info("No existe el post a eliminar con id " . $id);
             }
 
             $this -> doctrineManager -> em -> remove($post);
@@ -41,5 +57,10 @@ class PostService extends Service{
     public function getPostsByUser($id):Array{
         $repository = $this->doctrineManager->em->getRepository(Post::class);
         return $repository -> findByCreator($id);
+    }
+
+    public function getPostById($id){
+        $repository = $this->doctrineManager->em->getRepository(Post::class);
+        return $repository -> find($id);
     }
 }

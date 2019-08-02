@@ -4,17 +4,18 @@
     <div class="container">
         <div class="wrapper">
             <form role="form" method="POST" name="login_form" class="form-signin">
-                <h3 class="form-signin-heading">Nuevo post</h3>
+                <h3 class="form-signin-heading">{{post ? "Editar post" : "Nuevo post"}}</h3>
 
                 <hr class="colorgraph">
                 
                 <br/>
                 
-                <input type="text" class="form-control" name="title" placeholder="Titulo" required="" autofocus="">
-                <input type="text" class="form-control" name="description" placeholder="Cuerpo" required="">
+                <input type="text" class="form-control" name="title" placeholder="Titulo" required="" autofocus="" value="{{post.title}}">
+
+                <textarea type="text" class="form-control" name="description" placeholder="Cuerpo" required="">{{post.description}}</textarea>
                 
                 <button type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="CreatePost" >
-                    Crear post
+                    {{post ? "Editar post" : "Crear post"}}
                 </button>
             </form>
 
