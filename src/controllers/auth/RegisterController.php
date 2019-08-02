@@ -3,8 +3,17 @@ namespace App\controllers\auth;
 
 use App\controllers\Controller;
 use App\db\entities\User;
+use App\services\UserService;
 
 class RegisterController extends Controller{
+    /**
+     * @Inject
+     * @var UserService
+     */
+    private $userService;
+
+    private $error;
+
     public function index(){
         $this -> viewManager -> renderTemplate('register.twig.html');
     }
@@ -14,28 +23,26 @@ class RegisterController extends Controller{
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        if($this-> existUser()){
-            echo "El usuario ya existe";
+        $result = $this -> userService -> findUserByEmail($email);
+
+        //Si result existe no podemos registrar el nuevo usuario
+        if($result){
+            $this -> error = "Ya existe un usuario con este email";
+            $this -> viewManager -> renderTemplate("register.twig.html", ["error" => $this -> error]);
         }else{
             $user = new User();
             $user->name = $name;
             $user->email = $email;
             $user->password = sha1($password);
             
-            $this -> doctrineManager -> em -> persist($user);
-            $this -> doctrineManager -> em -> flush();
-        }
-    }
+            $result = $this -> userService -> createUser($user);
 
-    public function existUser(){
-        $repository = $this -> doctrineManager -> em -> getRepository(User::class);
-        
-        $user = $repository -> findByEmail($email);
-
-        if($user){
-            return true;
-        }else{
-            return false;
+            if($result){
+                $this -> redirectTo('login');
+            }else{
+                $this -> error = "Error en la creación de usuario";
+                $this -> viewManager -> renderTemplate("register.twig.html", ["error" => $this -> error]);
+            }
         }
     }
 }

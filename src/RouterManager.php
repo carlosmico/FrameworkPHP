@@ -16,7 +16,7 @@ class RouterManager
     {
         $route = $dispatcher->dispatch($requestMethod, $requestUri);
 
-        var_dump($requestMethod);
+        // var_dump($requestMethod);
 
         switch ($route[0]) {
             case \FastRoute\Dispatcher::NOT_FOUND:

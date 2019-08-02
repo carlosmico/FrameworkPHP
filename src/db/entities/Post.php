@@ -28,7 +28,6 @@ class Post extends Entity
     public $description;
     
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="id")
      * @ORM\Column(type="integer")
      */
     public $creator;
@@ -44,6 +43,6 @@ class Post extends Entity
     public $updated_at;
 
     public function __construct(){
-        $this->created_at = new \DateTIme('now');
+        $this->created_at = date('Y-m-d H:i:s');
     }
 }

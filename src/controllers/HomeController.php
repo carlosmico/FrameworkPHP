@@ -1,14 +1,21 @@
 <?php
 namespace App\controllers;
-use DI\Container;
 
+use App\services\PostService;
 use App\ViewManager;
 
-class HomeController extends Controller{
+class HomeController extends Controller
+{
+    /**
+     * @Inject
+     * @var PostService
+     */
+    private $postService;
 
-    public function index(){
-        // $this -> viewManager = $this->container->get(ViewManager::class);
+    public function index()
+    {
+        $posts = $this->postService->getPosts();
 
-        $this -> viewManager -> renderTemplate("index.twig.html");
+        $this->viewManager->renderTemplate("index.twig.html", ["posts" => $posts]);
     }
 }

@@ -19,9 +19,9 @@ class PostsSeeder extends AbstractSeed
 
         $data=[];
 
-        for ($i=0; $i < 50; $i++) { 
+        for ($i=0; $i < 10; $i++) { 
             $data[] = [
-                "title"=>$faker->name,
+                "title"=>"Post " . $i,
                 "description"=>$faker->text,
                 "creator"=>1,
                 "created_at"=>date('Y-m-d H:i:s')
